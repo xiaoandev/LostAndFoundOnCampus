@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.lostandfoundoncampus.BaseActivity;
 import com.example.lostandfoundoncampus.R;
+import com.example.lostandfoundoncampus.bean.User;
 import com.example.lostandfoundoncampus.utils.AppManager;
 import com.example.lostandfoundoncampus.utils.CommonUtils;
 import com.example.lostandfoundoncampus.utils.UserHelpUtil;
@@ -165,11 +166,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             final String rePwd = registerPwdCheck.getText().toString().trim();
 
             CommonUtils.showProgressDialog(RegisterActivity.this, "正在注册...");
-            BmobQuery<BmobUser> userNameQuery = new BmobQuery<>();
+            BmobQuery<User> userNameQuery = new BmobQuery<>();
             userNameQuery.addWhereEqualTo("username", name);
-            userNameQuery.findObjects(new FindListener<BmobUser>() {
+            userNameQuery.findObjects(new FindListener<User>() {
                 @Override
-                public void done(List<BmobUser> userList, BmobException e) {
+                public void done(List<User> userList, BmobException e) {
                     if (userList.size() != 0) {
                         CommonUtils.hideProgressDialog();
                         Toast.makeText(RegisterActivity.this, "用户名已存在",
@@ -180,11 +181,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             Toast.makeText(RegisterActivity.this, "输入的手机号格式不正确！",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            BmobQuery<BmobUser> phoneQuery = new BmobQuery<>();
+                            BmobQuery<User> phoneQuery = new BmobQuery<>();
                             phoneQuery.addWhereEqualTo("mobilePhoneNumber", phone);
-                            phoneQuery.findObjects(new FindListener<BmobUser>() {
+                            phoneQuery.findObjects(new FindListener<User>() {
                                 @Override
-                                public void done(List<BmobUser> phoneList, BmobException e) {
+                                public void done(List<User> phoneList, BmobException e) {
                                     if (phoneList.size() != 0) {
                                         CommonUtils.hideProgressDialog();
                                         Toast.makeText(RegisterActivity.this, "该手机号已绑定其他用户",
@@ -195,13 +196,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                             Toast.makeText(RegisterActivity.this, "两次输入的密码不匹配！", Toast.LENGTH_SHORT).show();
                                         } else {
                                             // 使用BmobSDK提供的注册功能
-                                            BmobUser user = new BmobUser();
+                                            User user = new User();
                                             user.setUsername(name);
                                             user.setPassword(password);
                                             user.setMobilePhoneNumber(phone);
-                                            user.signUp(new SaveListener<BmobUser>() {
+                                            user.signUp(new SaveListener<User>() {
                                                 @Override
-                                                public void done(BmobUser BmobUser, BmobException e) {
+                                                public void done(User user, BmobException e) {
                                                     if(e == null) {
                                                         CommonUtils.hideProgressDialog();
                                                         Toast.makeText(RegisterActivity.this, "注册成功",

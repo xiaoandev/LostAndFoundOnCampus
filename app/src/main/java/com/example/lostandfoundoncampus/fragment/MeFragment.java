@@ -10,14 +10,14 @@ import com.example.lostandfoundoncampus.R;
 
 import androidx.fragment.app.Fragment;
 
-public class TaoBaoFragment extends Fragment {
+public class MeFragment extends Fragment {
     public static final String TAG = "content";
     private View view;
     private TextView textView;
     private String content;
 
-    public static TaoBaoFragment newInstance() {
-        TaoBaoFragment fragment = new TaoBaoFragment();
+    public static MeFragment newInstance() {
+        MeFragment fragment = new MeFragment();
 //        Bundle args = new Bundle();
 //        args.putString(TAG, content);
 //        fragment.setArguments(args);
@@ -34,13 +34,13 @@ public class TaoBaoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_taobao, container, false);
+        view = inflater.inflate(R.layout.fragment_me, container, false);
         init();
         return view;
     }
 
     private void init() {
-        textView = (TextView) view.findViewById(R.id.tv_tao_bao);
+        textView = (TextView) view.findViewById(R.id.tv_me);
 //        textView.setText(content);
     }
 }

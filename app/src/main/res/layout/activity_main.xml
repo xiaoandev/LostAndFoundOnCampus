@@ -77,12 +77,14 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
-                    android:drawableStart="@drawable/ic_setting"
-                    android:drawableLeft="@drawable/ic_setting"
-                    android:drawablePadding="1dp"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:drawableLeft="@drawable/ic_settings"
+                    android:drawablePadding="10dp"
                     android:onClick="settingBtn"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:paddingLeft="15dp"
+                    android:textSize="15sp"
+                    android:text="设置"
                     android:textAlignment="inherit"
                     android:textColor="@color/colorPrimary"/>
 
@@ -92,12 +94,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:drawableRight="@drawable/ic_out"
+                    android:drawableLeft="@drawable/ic_out"
                     android:onClick="loginOut"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:paddingRight="25dp"
-                    android:textColor="@color/colorPrimary"/>
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:text="退出登录"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
 

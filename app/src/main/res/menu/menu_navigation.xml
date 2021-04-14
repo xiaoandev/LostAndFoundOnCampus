@@ -2,52 +2,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <group
-        android:id="@+id/group1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/item_android"
-            android:icon="@drawable/ic_android_fill"
-            android:title="安卓"
-            app:actionLayout="@layout/bage_hint"/>
+            android:id="@+id/item_friend_circle"
+            android:icon="@drawable/ic_friend_circle"
+            android:title="发现"/>
 
         <item
-            android:id="@+id/item_apple"
-            android:icon="@drawable/ic_apple_fill"
-            android:title="苹果"
-            app:actionLayout="@layout/vip_view"/>
+            android:id="@+id/item_school"
+            android:icon="@drawable/ic_school"
+            android:title="校园资讯" />
+
+        <item
+            android:id="@+id/item_me"
+            android:icon="@drawable/ic_me"
+            android:title="我的"/>
+
     </group>
 
-    <group
-        android:id="@+id/item_github"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/single_3"
-            android:icon="@drawable/ic_github_line"
-            android:title="github"/>
+<!--    <item-->
+<!--        android:title="子菜单">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/item_tao_bao"-->
+<!--                android:icon="@drawable/ic_taobao_fill"-->
+<!--                android:title="淘宝"/>-->
 
-        <item
-            android:id="@+id/item_we_chat"
-            android:icon="@drawable/ic_wechat_fill"
-            android:title="wechat"/>
-    </group>
+<!--            <item-->
+<!--                android:id="@+id/item_bai_du"-->
+<!--                android:icon="@drawable/ic_baidu_line"-->
+<!--                android:title="百度"/>-->
 
-    <item
-        android:title="子菜单">
-        <menu>
-            <item
-                android:id="@+id/item_tao_bao"
-                android:icon="@drawable/ic_taobao_fill"
-                android:title="淘宝"/>
-
-            <item
-                android:id="@+id/item_bai_du"
-                android:icon="@drawable/ic_baidu_line"
-                android:title="百度"/>
-
-            <item
-                android:id="@+id/item_qq"
-                android:icon="@drawable/ic_qq_fill"
-                android:title="腾讯"/>
-        </menu>
-    </item>
+<!--            <item-->
+<!--                android:id="@+id/item_qq"-->
+<!--                android:icon="@drawable/ic_qq_fill"-->
+<!--                android:title="腾讯"/>-->
+<!--        </menu>-->
+<!--    </item>-->
 </menu>

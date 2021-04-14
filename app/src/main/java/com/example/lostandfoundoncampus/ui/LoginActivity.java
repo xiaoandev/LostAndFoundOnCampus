@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.lostandfoundoncampus.BaseActivity;
 import com.example.lostandfoundoncampus.R;
+import com.example.lostandfoundoncampus.bean.User;
 import com.example.lostandfoundoncampus.utils.CommonUtils;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -39,8 +40,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //在加载布局文件前判断是否登录过
-        loginPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        loginEditor = loginPreferences.edit();
+//        loginPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        loginEditor = loginPreferences.edit();
         //方式一：使用SharedPreferences记录登录状态，实现自动登录
         //getBoolean("SignedIn", false); 找不到"SignedIn"所对应的键值是默认返回false
 //        if (loginPreferences.getBoolean("SignedIn", false)) {
@@ -102,12 +103,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             final String name = usernameEdit.getText().toString().trim();
             final String password = passwordEdit.getText().toString().trim();
             CommonUtils.showProgressDialog(LoginActivity.this, "正在登陆...");
-            BmobUser loginUser = new BmobUser();
+            User loginUser = new User();
             loginUser.setUsername(name);
             loginUser.setPassword(password);
-            loginUser.login(new SaveListener<BmobUser>() {
+            loginUser.login(new SaveListener<User>() {
                 @Override
-                public void done(BmobUser BmobUser, BmobException e) {
+                public void done(User user, BmobException e) {
                     if (e == null) {
                         CommonUtils.hideProgressDialog();
                         Toast.makeText(LoginActivity.this, "用户登录成功", Toast.LENGTH_SHORT).show();

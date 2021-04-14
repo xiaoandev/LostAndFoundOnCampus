@@ -3,7 +3,6 @@ package com.example.lostandfoundoncampus.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -16,16 +15,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lostandfoundoncampus.BaseActivity;
 import com.example.lostandfoundoncampus.R;
-import com.example.lostandfoundoncampus.fragment.BaiDuFragment;
-import com.example.lostandfoundoncampus.fragment.HomeFragment;
+import com.example.lostandfoundoncampus.bean.User;
+import com.example.lostandfoundoncampus.fragment.SchoolFragment;
+import com.example.lostandfoundoncampus.fragment.CircleFragment;
 import com.example.lostandfoundoncampus.fragment.SettingFragment;
-import com.example.lostandfoundoncampus.fragment.TaoBaoFragment;
+import com.example.lostandfoundoncampus.fragment.MeFragment;
 import com.example.lostandfoundoncampus.utils.CommonUtils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,9 +34,9 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private List<Fragment> fragments;
-    private HomeFragment homeFragment;
-    private TaoBaoFragment taoBaoFragment;
-    private BaiDuFragment baiDuFragment;
+    private CircleFragment circleFragment;
+    private MeFragment meFragment;
+    private SchoolFragment schoolFragment;
     private SettingFragment settingFragment;
     private DrawerLayout drawer;
 
@@ -60,9 +59,9 @@ public class MainActivity extends BaseActivity {
         }
 
         fragments = new ArrayList<Fragment>();
-        fragments.add(HomeFragment.newInstance());
-        fragments.add(BaiDuFragment.newInstance());
-        fragments.add(TaoBaoFragment.newInstance());
+        fragments.add(CircleFragment.newInstance());
+        fragments.add(SchoolFragment.newInstance());
+        fragments.add(MeFragment.newInstance());
         fragments.add(SettingFragment.newInstance());
 
         //初始化主页内容
@@ -98,7 +97,7 @@ public class MainActivity extends BaseActivity {
         });
 
         TextView currentUserName = headerView.findViewById(R.id.current_user);
-        currentUserName.setText(BmobUser.getCurrentUser(BmobUser.class).getUsername());
+        currentUserName.setText(BmobUser.getCurrentUser(User.class).getUsername());
 
         navigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -122,21 +121,21 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.item_android:
+                    case R.id.item_friend_circle:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 //                        initFragment1();
                         switchToFragment(0);
                         //关闭侧边栏
                         drawer.closeDrawers();
                         break;
-                    case R.id.item_bai_du:
+                    case R.id.item_school:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 //                        initFragment2();
                         switchToFragment(1);
                         //关闭侧边栏
                         drawer.closeDrawers();
                         break;
-                    case R.id.item_tao_bao:
+                    case R.id.item_me:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 //                        initFragment3();
                         switchToFragment(2);
@@ -146,18 +145,6 @@ public class MainActivity extends BaseActivity {
                     default:
                         break;
                 }
-
-
-//                if (menuItem.getTitle().equals("安卓")) {
-//                    selectItem(0);
-//                } else if (menuItem.getTitle().equals("百度")) {
-//                    selectItem(1);
-//                } else if (menuItem.getTitle().equals("淘宝")) {
-//                    selectItem(2);
-//                } else {
-//                    selectItem(3);
-//                }
-//                Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 
                 //设置哪个按钮被选中
 //                menuItem.setChecked(true);
@@ -206,15 +193,15 @@ public class MainActivity extends BaseActivity {
         //开启事务，fragment的控制是由事务来实现
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //第一种方式（add），初始化fragment并添加到事务中，如果为null就new一个
-        if (homeFragment == null) {
-            homeFragment = new HomeFragment();
-            transaction.add(R.id.content_fragment, homeFragment);
+        if (circleFragment == null) {
+            circleFragment = new CircleFragment();
+            transaction.add(R.id.content_fragment, circleFragment);
         }
 
         //隐藏所有fragment
         hideFragment(transaction);
         //显示需要显示的fragment
-        transaction.show(homeFragment);
+        transaction.show(circleFragment);
 
         //第二种方式（replace）, 初始化fragment
 //        if (homeFragment == null) {
@@ -230,15 +217,15 @@ public class MainActivity extends BaseActivity {
         //开启事务，fragment的控制是由事务来实现
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //第一种方式（add），初始化fragment并添加到事务中，如果为null就new一个
-        if (baiDuFragment == null) {
-            baiDuFragment = new BaiDuFragment();
-            transaction.add(R.id.content_fragment, baiDuFragment);
+        if (schoolFragment == null) {
+            schoolFragment = new SchoolFragment();
+            transaction.add(R.id.content_fragment, schoolFragment);
         }
 
         //隐藏所有fragment
         hideFragment(transaction);
         //显示需要显示的fragment
-        transaction.show(baiDuFragment);
+        transaction.show(schoolFragment);
 
         //第二种方式（replace）, 初始化fragment
 //        if (baiDuFragment == null) {
@@ -254,15 +241,15 @@ public class MainActivity extends BaseActivity {
         //开启事务，fragment的控制是由事务来实现
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //第一种方式（add），初始化fragment并添加到事务中，如果为null就new一个
-        if (taoBaoFragment == null) {
-            taoBaoFragment = new TaoBaoFragment();
-            transaction.add(R.id.content_fragment, taoBaoFragment);
+        if (meFragment == null) {
+            meFragment = new MeFragment();
+            transaction.add(R.id.content_fragment, meFragment);
         }
 
         //隐藏所有fragment
         hideFragment(transaction);
         //显示需要显示的fragment
-        transaction.show(taoBaoFragment);
+        transaction.show(meFragment);
 
         //第二种方式（replace）, 初始化fragment
 //        if (taoBaoFragment == null) {
@@ -299,12 +286,12 @@ public class MainActivity extends BaseActivity {
 
     //隐藏所有的fragment
     private void hideFragment(FragmentTransaction transaction) {
-        if (homeFragment != null)
-            transaction.hide(homeFragment);
-        if (taoBaoFragment != null)
-            transaction.hide(taoBaoFragment);
-        if (baiDuFragment != null)
-            transaction.hide(baiDuFragment);
+        if (circleFragment != null)
+            transaction.hide(circleFragment);
+        if (meFragment != null)
+            transaction.hide(meFragment);
+        if (schoolFragment != null)
+            transaction.hide(schoolFragment);
         if (settingFragment != null)
             transaction.hide(settingFragment);
     }

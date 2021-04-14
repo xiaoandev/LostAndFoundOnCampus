@@ -5,6 +5,7 @@
     <color name="colorAccent">#0eabe5</color>
 
     <color name="colorGray">#55888888</color>
+    <color name="white">#fff</color>
 
     <color name="splash_bg">#F8F6EC</color>
     <color name="orange">#FF9600</color>
